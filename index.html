@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111214">
+  <meta name="description" content="RexMedia Studio by XboyRex — copy public YouTube metadata and save available thumbnails or public Instagram media.">
+  <meta property="og:title" content="RexMedia Studio">
+  <meta property="og:description" content="A minimal workspace for public video metadata, captions, hashtags, thumbnails and available public media.">
+  <meta property="og:type" content="website">
+  <title>RexMedia Studio — by XboyRex</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="RexMedia">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-mark" viewBox="0 0 40 40"><path d="M7 6h15.5c7.4 0 12 4.2 12 10.1 0 4.7-2.8 8.1-7.4 9.4L35 35H23.8l-6.9-8.5h-.8V35H7V6Zm9.1 7.9v5.2h6.2c1.9 0 3-1 3-2.6s-1.1-2.6-3-2.6h-6.2Z" fill="currentColor"/><path d="M4 5v30" stroke="#C8FF5F" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.7" r=".8" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v3h16v-3"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 0 0 11 21.1l1.7-1.7"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h15M4 15h15M10 3 8 21M17 3l-2 18"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 4a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.4Z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.9 13A8.6 8.6 0 0 1 11 3.1 8.6 8.6 0 1 0 20.9 13Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="m13 2-3 9h7L9 22l2-9H4l9-11Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-circle-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7M10 14 21 3"/><path d="M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></symbol>
+  </svg>
+  <div class="page-shell" id="home">
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="RexMedia Studio home">
+        <span class="brand-mark"><svg><use href="#i-mark"></use></svg></span>
+        <span><strong>RexMedia Studio</strong><small>BY XBOYREX</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#tool" data-nav="youtube" class="nav-link active">YouTube</a>
+        <a href="#tool" data-nav="instagram" class="nav-link">Instagram</a>
+        <a href="#recent" class="nav-link">Recent</a>
+      </nav>
+      <div class="header-actions">
+        <span class="status-chip"><i></i> PUBLIC LINKS</span>
+        <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme"><svg class="sun-icon"><use href="#i-sun"></use></svg><svg class="moon-icon"><use href="#i-moon"></use></svg></button>
+        <button class="icon-button mobile-menu" id="mobile-menu" type="button" aria-label="Open menu"><svg><use href="#i-menu"></use></svg></button>
+      </div>
+    </header>
+
+    <aside class="mobile-drawer" id="sidebar" aria-label="Mobile navigation">
+      <a href="#tool" data-nav="youtube" class="nav-link active">YouTube tools</a>
+      <a href="#tool" data-nav="instagram" class="nav-link">Instagram tools</a>
+      <a href="#recent" class="nav-link">Recent activity</a>
+      <a href="#about" class="nav-link">Privacy & limits</a>
+    </aside>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <main>
+      <section class="intro-block" aria-labelledby="hero-title">
+        <p class="eyebrow">CREATOR UTILITIES <span>·</span> NO API KEY</p>
+        <h1 id="hero-title">The small things,<br><span>handled.</span></h1>
+        <p class="hero-description">Copy visible titles, descriptions, captions and hashtags. Save thumbnails and media when a public source exposes a direct file.</p>
+      </section>
+
+      <section class="tool-section" id="tool" aria-labelledby="tool-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">ONE LINK AT A TIME</p><h2 id="tool-title">Get the details</h2></div>
+          <span class="section-index">01 / TOOLKIT</span>
+        </div>
+        <div class="tool-panel">
+          <div class="tool-tabs" role="tablist" aria-label="Platform">
+            <button id="tab-youtube" class="tool-tab active" type="button" data-platform="youtube" role="tab" aria-selected="true"><svg><use href="#i-youtube"></use></svg> YouTube</button>
+            <button id="tab-instagram" class="tool-tab" type="button" data-platform="instagram" role="tab" aria-selected="false"><svg><use href="#i-instagram"></use></svg> Instagram</button>
+            <span class="tab-spacer"></span><span class="tool-mode"><i></i> PUBLIC CONTENT</span>
+          </div>
+          <div class="tool-content">
+            <div class="tool-intro">
+              <span class="tool-icon youtube-icon" id="tool-platform-icon"><svg><use href="#i-youtube"></use></svg></span>
+              <div><h3 id="tool-form-title">YouTube metadata</h3><p id="tool-form-subtitle">Title, description, tags, comments and thumbnail options when present in the public page.</p></div>
+            </div>
+            <form class="url-form" id="extract-form">
+              <label class="sr-only" for="url-input">Public content URL</label>
+              <div class="url-input-wrap"><svg><use href="#i-link"></use></svg><input id="url-input" type="url" inputmode="url" placeholder="Paste a YouTube link…" autocomplete="url" required><button class="input-clear" id="clear-url" type="button" aria-label="Clear link" hidden><svg><use href="#i-close"></use></svg></button></div>
+              <button class="button button-primary extract-button" id="extract-button" type="submit"><span class="button-label">Extract details</span><svg class="button-arrow"><use href="#i-arrow-up-right"></use></svg><span class="button-spinner" aria-hidden="true"></span></button>
+            </form>
+            <div class="form-helper"><span><svg><use href="#i-shield"></use></svg> No sign-in</span><span><svg><use href="#i-zap"></use></svg> Best-effort public fetch</span><button class="text-link sample-link" id="sample-link" type="button">Use sample link</button></div>
+            <div class="privacy-note" id="privacy-note"><svg><use href="#i-circle-alert"></use></svg><span>Public-page parsing can be blocked or change. Only data exposed by the source is shown.</span></div>
+          </div>
+          <div class="results-wrap" id="results-wrap" hidden></div>
+        </div>
+      </section>
+
+      <section class="recent-section" id="recent" aria-labelledby="recent-title">
+        <div class="section-heading recent-heading"><div><p class="section-kicker">LOCAL TO THIS DEVICE</p><h2 id="recent-title">Recent activity</h2></div><button class="button button-quiet" id="clear-history" type="button">Clear history</button></div>
+        <div class="recent-list" id="recent-list"></div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div><p class="section-kicker">PUBLIC CONTENT ONLY</p><h2>Useful, not misleading.</h2><p>RexMedia reads only metadata and direct media URLs that the public source exposes. It does not unlock private posts, bypass login challenges, or pretend that a video is an audio file.</p></div>
+        <div class="about-links"><a href="https://studio.youtube.com/" target="_blank" rel="noopener noreferrer">Download your own YouTube uploads <svg><use href="#i-external"></use></svg></a><a href="https://help.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram Help <svg><use href="#i-external"></use></svg></a></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand" href="#home"><span class="brand-mark"><svg><use href="#i-mark"></use></svg></span><span><strong>RexMedia Studio</strong><small>BY XBOYREX</small></span></a><p>Public metadata and publicly exposed media only.</p><a href="https://github.com/xboyrex/rexmedia-studio" target="_blank" rel="noopener noreferrer">GitHub repository <svg><use href="#i-external"></use></svg></a></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
